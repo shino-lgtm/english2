@@ -1,16 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>レストラン Unit1</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel English Drill - Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🍽️ Unit 1: 注文する</h1>
-  <div class="question" id="question"></div>
-  <div class="options" id="options"></div>
-  <div class="feedback" id="feedback"></div>
+  <h1>Travel English Drill - Restaurant</h1>
 
-  <script src="script.js"></script>
+  <div class="section">
+    <h2>Q1: 「予約しています」に対応する英語は？</h2>
+    <ul>
+      <li class="choice" data-text="I have a reservation.">I have a reservation.</li>
+      <li class="choice" data-text="Can I see the menu, please?">Can I see the menu, please?</li>
+      <li class="choice" data-text="What do you recommend?">What do you recommend?</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Q2: 「メニューを見せてもらえますか？」に対応する英語は？</h2>
+    <ul>
+      <li class="choice" data-text="Can I see the menu, please?">Can I see the menu, please?</li>
+      <li class="choice" data-text="Is this vegetarian?">Is this vegetarian?</li>
+      <li class="choice" data-text="Can I have the check, please?">Can I have the check, please?</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Q3: 「おすすめは何ですか？」に対応する英語は？</h2>
+    <ul>
+      <li class="choice" data-text="What do you recommend?">What do you recommend?</li>
+      <li class="choice" data-text="I have a reservation.">I have a reservation.</li>
+      <li class="choice" data-text="Is this vegetarian?">Is this vegetarian?</li>
+    </ul>
+  </div>
+
+  <!-- 読み上げスクリプト -->
+  <script>
+    function speak(text) {
+      window.speechSynthesis.cancel(); // 既存音声キャンセル
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 選択肢にクリックイベントを追加
+    document.querySelectorAll('.choice').forEach(item => {
+      item.addEventListener('click', () => {
+        const text = item.dataset.text;
+        if (text) {
+          speak(text);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
