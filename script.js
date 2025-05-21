@@ -63,12 +63,15 @@ function showQuestion() {
   optionsDiv.innerHTML = "";
   feedbackDiv.textContent = "";
 
+  // 問題文を読み上げ
+  speak(q.question);
+
   q.options.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option;
     btn.className = "option";
     btn.onclick = () => checkAnswer(option, q.answer);
-    btn.addEventListener("click", () => speak(option)); // クリックで読み上げ
+    btn.addEventListener("click", () => speak(option)); // クリックで選択肢を読み上げ
     optionsDiv.appendChild(btn);
   });
 }
