@@ -56,6 +56,14 @@ const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const feedbackEl = document.getElementById("feedback");
 
+// 🗣️ 音声読み上げ機能を追加
+function speak(text) {
+  window.speechSynthesis.cancel(); // 直前の発音を止める
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  window.speechSynthesis.speak(utterance);
+}
+
 function showQuestion() {
   if (current >= questions.length) {
     questionEl.textContent = "🎉 終了しました！お疲れさまでした！";
@@ -65,27 +73,4 @@ function showQuestion() {
   }
 
   const q = questions[current];
-  questionEl.textContent = `Q${current + 1}. ${q.question}`;
-  optionsEl.innerHTML = "";
-  feedbackEl.textContent = "";
-
-  q.options.forEach(option => {
-    const btn = document.createElement("button");
-    btn.textContent = option;
-    btn.onclick = () => {
-      if (option === q.answer) {
-        feedbackEl.textContent = "⭕ 正解！";
-      } else {
-        feedbackEl.textContent = "❌ 不正解…";
-      }
-
-      setTimeout(() => {
-        current++;
-        showQuestion();
-      }, 1000);
-    };
-    optionsEl.appendChild(btn);
-  });
-}
-
-showQuestion();
+  questionEl.textContent = `Q${current + 1}. ${q.question
